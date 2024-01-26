@@ -3,5 +3,5 @@ export const navigation = [
   { name: 'Projects', path: '/projects' },
   { name: 'Achievements', path: '/achievements' },
   { name: 'Team', path: '/team' },
-  { name: 'Contact Us', path: '/contact' },
+  { name: 'Contact Us', path: '/contact-us' },
 ];

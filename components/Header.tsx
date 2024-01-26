@@ -2,13 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { navigation } from '@/app/constants';
 import Logo from '@/assets/logo.png';
 
 export default function Header() {
+  const fullPath = usePathname();
   return (
-    <nav className='bg-enactus-grey py-10 lg:px-24 px-12 lg:h-[15vh] h-[12vh] md:flex hidden justify-between items-center text-white'>
-      <div className='lg:h-[10vh] h-[7.5vh]'>
+    <nav className='hidden h-[12vh] items-center justify-between bg-enactus-grey px-12 py-10 text-white md:flex lg:h-[15vh] lg:px-24'>
+      <div className='h-[7.5vh] lg:h-[10vh]'>
         <Image src={Logo} alt='Logo' className='h-full w-auto' />
       </div>
       <div className='flex items-center text-white'>
@@ -17,12 +19,13 @@ export default function Header() {
             <Link
               key={name}
               href={path}
-              className={`transition-colors hover:text-enactus-chrome px-4 py-2 lg:text-lg ${
-                path === '/'
-                  ? 'text-enactus-yellow font-base'
-                  : 'font-extralight'
-              }`}
-            >
+              className={`px-4 py-2 transition-colors hover:text-enactus-chrome lg:text-lg ${
+                path === '/' && fullPath === '/'
+                  ? 'font-base text-enactus-yellow'
+                  : fullPath.startsWith(path) && path !== '/'
+                    ? 'font-base text-enactus-yellow'
+                    : 'font-extralight'
+              }`}>
               {name}
             </Link>
           );

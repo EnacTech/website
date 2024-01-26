@@ -10,9 +10,9 @@ export default function Header() {
   const fullPath = usePathname();
   return (
     <nav className='hidden h-[12vh] w-full items-center justify-between bg-enactus-grey px-12 py-10 text-white md:flex lg:h-[15vh] lg:px-24'>
-      <div className='h-[7.5vh] lg:h-[10vh]'>
+      <Link href='/' className=' h-[7.5vh] cursor-pointer lg:h-[10vh]'>
         <Image src={Logo} alt='Logo' className='h-full w-auto' />
-      </div>
+      </Link>
       <div className='flex items-center text-white'>
         {navigation.map(({ name, path }) => {
           return (

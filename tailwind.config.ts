@@ -59,6 +59,9 @@ const config = {
           chrome: '#faae32',
           grey: '#2f2e2e',
         },
+        instagram: '#e1306c',
+        youtube: '#ff0000',
+        linkedin: '#0077b5',
       },
       borderRadius: {
         lg: 'var(--radius)',

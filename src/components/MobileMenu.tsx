@@ -14,10 +14,10 @@ export default function MobileMenu() {
   const fullPath = usePathname();
   return (
     <>
-      <nav className='absolute left-0 right-0 top-0 z-[101] flex h-[12vh] w-full items-center justify-between bg-enactus-grey px-6 text-white md:hidden'>
-        <div className='h-[8vh] cursor-pointer'>
+      <nav className='absolute left-0 right-0 top-0 z-[101] flex h-[12vh] w-full items-center justify-between bg-enactus-grey px-6 text-white sm:px-16 md:hidden'>
+        <Link href='/' className='h-[8vh] cursor-pointer'>
           <Image src={Logo} alt='Logo' className='h-full w-auto' />
-        </div>
+        </Link>
         <div
           className='cursor-pointer transition-colors duration-200 ease-in hover:text-enactus-yellow'
           onClick={() => setOpen(!open)}>

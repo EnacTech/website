@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Logo from '@/assets/logo.png';
 import { navigation } from '@/constants';
 import Link from 'next/link';
@@ -17,8 +18,14 @@ export default function MobileMenu() {
         <div className='h-[8vh] cursor-pointer'>
           <Image src={Logo} alt='Logo' className='h-full w-auto' />
         </div>
-        <div className='cursor-pointer' onClick={() => setOpen(!open)}>
-          {!open ? <Menu size='28' /> : <X size='28' />}
+        <div
+          className='cursor-pointer transition-colors duration-200 ease-in hover:text-enactus-yellow'
+          onClick={() => setOpen(!open)}>
+          {!open ? (
+            <MenuRoundedIcon className='h-8 w-8' />
+          ) : (
+            <CloseRoundedIcon className='h-8 w-8' />
+          )}
         </div>
       </nav>
       <div
@@ -31,7 +38,7 @@ export default function MobileMenu() {
           <Link
             key={name}
             href={path}
-            className={`block px-8 py-4 text-lg hover:text-enactus-chrome ${
+            className={`block w-fit px-8 py-4 text-lg transition-colors duration-200 ease-in hover:text-enactus-chrome ${
               path === '/' && fullPath === '/'
                 ? 'text-enactus-yellow'
                 : fullPath.startsWith(path) && path !== '/'

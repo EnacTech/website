@@ -19,12 +19,12 @@ export default function Header() {
             <Link
               key={name}
               href={path}
-              className={`px-4 py-2 transition-colors hover:text-enactus-chrome lg:text-lg ${
+              className={`px-4 py-2 text-center transition-colors after:top-0 after:block after:h-[1.5px] after:bg-enactus-yellow after:transition-all after:duration-200 after:ease-in-out after:content-[''] hover:text-enactus-chrome lg:text-lg ${
                 path === '/' && fullPath === '/'
-                  ? 'font-base text-enactus-yellow'
+                  ? 'font-base text-enactus-yellow after:w-full'
                   : fullPath.startsWith(path) && path !== '/'
-                    ? 'font-base text-enactus-yellow'
-                    : 'font-extralight'
+                    ? 'font-base text-enactus-yellow after:w-full'
+                    : 'font-extralight after:w-0'
               }`}>
               {name}
             </Link>

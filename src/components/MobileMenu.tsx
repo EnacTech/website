@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Logo from '@/assets/logo.png';
-import { navigation } from '@/app/constants';
+import { navigation } from '@/constants';
 import Link from 'next/link';
 
 export default function MobileMenu() {

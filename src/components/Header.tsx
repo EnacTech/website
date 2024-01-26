@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { navigation } from '@/app/constants';
+import { navigation } from '@/constants';
 import Logo from '@/assets/logo.png';
 
 export default function Header() {

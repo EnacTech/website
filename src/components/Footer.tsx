@@ -44,7 +44,7 @@ export default function Footer(): JSX.Element {
         <p className='pb-2 text-center text-sm leading-tight md:text-left lg:text-base'>
           Join the conversation and connect with us on our social media handles.
         </p>
-        <div className='flex items-center justify-around py-6 sm:px-16 md:px-0'>
+        <div className='flex items-center justify-around py-6 sm:px-16 md:px-0 px-8'>
           <Link href='' target='_blank'>
             <InstagramIcon className='inline h-10 w-10 cursor-pointer transition-colors duration-150 ease-in hover:text-instagram md:h-8 md:w-8 lg:h-12 lg:w-12' />
           </Link>

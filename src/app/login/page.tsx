@@ -55,7 +55,9 @@ export default function Login() {
       console.log(loggedInUser.data);
 
       if (loggedInUser.data.user) router.push('/admin');
-      else alert('Invalid Credentials');
+      else {
+        
+      }
 
       setEmail('');
       setPassword('');
@@ -66,48 +68,50 @@ export default function Login() {
   };
 
   return (
-    <div className='absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2'>
-      <Card className='min-w-96 items-center text-center'>
-        <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Enactus NSUT</CardDescription>
-        </CardHeader>
-        <CardContent className='space-y-6'>
-          <Input
-            type='email'
-            name='email'
-            placeholder='Email...'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className='flex w-full items-center space-x-2'>
+    <div className='dark h-screen w-screen bg-black'>
+      <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+        <Card className='min-w-96 items-center text-center'>
+          <CardHeader>
+            <CardTitle>Login</CardTitle>
+            <CardDescription>Enactus NSUT</CardDescription>
+          </CardHeader>
+          <CardContent className='space-y-6'>
             <Input
-              type={visible ? 'text' : 'password'}
-              name='password'
-              placeholder='Password...'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type='email'
+              name='email'
+              placeholder='Email...'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
+            <div className='flex w-full items-center space-x-2'>
+              <Input
+                type={visible ? 'text' : 'password'}
+                name='password'
+                placeholder='Password...'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button
+                type='button'
+                variant='secondary'
+                onClick={() => setVisible((prev) => !prev)}>
+                {visible ? (
+                  <VisibilityOffRoundedIcon />
+                ) : (
+                  <VisibilityRoundedIcon />
+                )}
+              </Button>
+            </div>
             <Button
               type='button'
-              variant='secondary'
-              onClick={() => setVisible((prev) => !prev)}>
-              {visible ? (
-                <VisibilityOffRoundedIcon />
-              ) : (
-                <VisibilityRoundedIcon />
-              )}
+              variant='default'
+              className='w-full'
+              onClick={handleSignIn}>
+              Sign In
             </Button>
-          </div>
-          <Button
-            type='button'
-            variant='default'
-            className='w-full'
-            onClick={handleSignIn}>
-            Sign In
-          </Button>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

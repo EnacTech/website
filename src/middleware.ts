@@ -1,9 +1,14 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextRequest, NextResponse } from 'next/server';
 
-export default async function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const supabase = await createMiddlewareClient({ req, res });
-  await supabase.auth.getSession();
+  const supabase = createMiddlewareClient({ req, res });
+  await supabase.auth.getUser();
+
   return res;
 }
+
+export const config = {
+  matcher: ['/admin'],
+};

@@ -14,6 +14,7 @@ export default function Header() {
     await supabase.auth.signOut();
     router.push('/login');
   };
+
   return (
     <div className='flex w-full items-center justify-between border-b px-6 py-4 text-white md:flex-row md:px-12 lg:px-24'>
       <Image src={Logo} alt='Logo' className='h-[7.5vh] w-auto md:h-[10vh]' />

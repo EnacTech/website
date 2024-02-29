@@ -17,55 +17,12 @@ import {
   createClientComponentClient,
 } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
+import { login } from './actions';
 
 export default function Login() {
   const [visible, setVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [user, setUser] = useState<User | null>(null);
-  const supabase = createClientComponentClient();
-  const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    async function getUser() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-      setLoading(false);
-    }
-
-    getUser();
-  }, [supabase.auth]);
-
-  if (loading) return <div>Loading...</div>;
-
-  if (!loading && user) {
-    router.push('/admin');
-  }
-
-  const handleSignIn = async () => {
-    try {
-      const loggedInUser = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      console.log(loggedInUser.data);
-
-      if (loggedInUser.data.user) router.push('/admin');
-      else {
-        
-      }
-
-      setEmail('');
-      setPassword('');
-      setLoading(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className='dark h-screen w-screen bg-black'>
@@ -75,40 +32,42 @@ export default function Login() {
             <CardTitle>Login</CardTitle>
             <CardDescription>Enactus NSUT</CardDescription>
           </CardHeader>
-          <CardContent className='space-y-6'>
-            <Input
-              type='email'
-              name='email'
-              placeholder='Email...'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <div className='flex w-full items-center space-x-2'>
+          <CardContent>
+            <form className='space-y-6'>
               <Input
-                type={visible ? 'text' : 'password'}
-                name='password'
-                placeholder='Password...'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type='email'
+                name='email'
+                placeholder='Email...'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+              <div className='flex w-full items-center space-x-2'>
+                <Input
+                  type={visible ? 'text' : 'password'}
+                  name='password'
+                  placeholder='Password...'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <Button
+                  type='button'
+                  variant='secondary'
+                  onClick={() => setVisible((prev) => !prev)}>
+                  {visible ? (
+                    <VisibilityOffRoundedIcon />
+                  ) : (
+                    <VisibilityRoundedIcon />
+                  )}
+                </Button>
+              </div>
               <Button
-                type='button'
-                variant='secondary'
-                onClick={() => setVisible((prev) => !prev)}>
-                {visible ? (
-                  <VisibilityOffRoundedIcon />
-                ) : (
-                  <VisibilityRoundedIcon />
-                )}
+                type='submit'
+                variant='default'
+                className='w-full'
+                formAction={login}>
+                Sign In
               </Button>
-            </div>
-            <Button
-              type='button'
-              variant='default'
-              className='w-full'
-              onClick={handleSignIn}>
-              Sign In
-            </Button>
+            </form>
           </CardContent>
         </Card>
       </div>
